@@ -2,7 +2,7 @@ import httpx
 import os
 import json
 import redis.asyncio as redis
-from data.player_context import PLAYER_CONTEXT
+from data.player_context import PLAYER_CONTEXT, BOWLING_STATS
 
 CRICDATA_API_KEY = os.getenv("CRICDATA_API_KEY")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379")
@@ -106,6 +106,7 @@ def build_player_data(name_lower: str, live_data: dict) -> dict:
     context = PLAYER_CONTEXT[name_lower]
     profile = PLAYER_PROFILES[name_lower]
     career = PLAYER_CAREER_STATS[name_lower]
+    bowling = BOWLING_STATS.get(name_lower, None)
 
     return {
         "name": live_data.get("name", name_lower.title()),
@@ -114,6 +115,7 @@ def build_player_data(name_lower: str, live_data: dict) -> dict:
         "batting_style": live_data.get("battingStyle", profile["batting_style"]),
         "bowling_style": live_data.get("bowlingStyle", profile["bowling_style"]),
         "career_stats": career,
+        "bowling_stats": bowling,
         "vs_pace": context["vs_pace"],
         "vs_spin": context["vs_spin"],
         "last_10_innings": context["last_10_innings"],

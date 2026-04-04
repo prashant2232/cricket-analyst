@@ -264,3 +264,17 @@ PLAYER_CONTEXT = {
         ],
     },
 }
+
+# Bowling career stats for bowlers and allrounders
+BOWLING_STATS = {
+    "jasprit bumrah":  {"wickets": 149, "average": 20.31, "economy": 4.52, "strike_rate": 26.9, "five_wickets": 3,  "best": "6/19"},
+    "mohammed shami":  {"wickets": 195, "average": 27.48, "economy": 5.32, "strike_rate": 30.9, "five_wickets": 4,  "best": "5/18"},
+    "kuldeep yadav":   {"wickets": 182, "average": 24.61, "economy": 4.98, "strike_rate": 29.6, "five_wickets": 4,  "best": "6/25"},
+    "pat cummins":     {"wickets": 236, "average": 26.02, "economy": 5.21, "strike_rate": 29.9, "five_wickets": 5,  "best": "5/28"},
+    "shaheen afridi":  {"wickets": 129, "average": 24.03, "economy": 4.81, "strike_rate": 29.9, "five_wickets": 3,  "best": "6/35"},
+    "trent boult":     {"wickets": 317, "average": 25.39, "economy": 5.16, "strike_rate": 29.5, "five_wickets": 7,  "best": "7/34"},
+    "kagiso rabada":   {"wickets": 159, "average": 26.44, "economy": 5.38, "strike_rate": 29.5, "five_wickets": 3,  "best": "5/25"},
+    "hardik pandya":   {"wickets": 84,  "average": 34.10, "economy": 5.44, "strike_rate": 37.6, "five_wickets": 0,  "best": "4/38"},
+    "ravindra jadeja": {"wickets": 220, "average": 35.61, "economy": 4.84, "strike_rate": 44.0, "five_wickets": 2,  "best": "5/36"},
+    "ben stokes":      {"wickets": 105, "average": 32.45, "economy": 5.71, "strike_rate": 34.1, "five_wickets": 2,  "best": "4/33"},
+}
