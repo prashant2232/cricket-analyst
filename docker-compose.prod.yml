@@ -1,0 +1,45 @@
+services:
+
+  # ── FastAPI Backend ──────────────────────────────────────
+  backend:
+    build: ./backend
+    container_name: cricket-backend-prod
+    # No port exposed to host — only accessible inside Docker network
+    # Nginx proxies /api/* to this container
+    expose:
+      - "8000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - redis
+    networks:
+      - cricket-prod-network
+    restart: always
+
+# ── React Frontend (Nginx) ───────────────────────────────
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.prod
+    container_name: cricket-frontend-prod
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - cricket-prod-network
+    restart: always
+
+  # ── Redis Cache ──────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: cricket-redis-prod
+    expose:
+      - "6379"            # Only accessible inside network, not to host
+    networks:
+      - cricket-prod-network
+    restart: always
+
+networks:
+  cricket-prod-network:
+    driver: bridge

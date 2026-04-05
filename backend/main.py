@@ -12,12 +12,13 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:3001",
+        "http://localhost:80",
+        "http://localhost",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Register routers (we'll fill these in later)
 from routes import players, analysis
 app.include_router(players.router, prefix="/api")
