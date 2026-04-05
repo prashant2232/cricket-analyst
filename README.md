@@ -4,7 +4,10 @@ A full-stack AI-powered cricket analytics web application built with
 React, FastAPI, Redis, and Google Gemini Pro. Fully containerized with Docker.
 
 ## Live Demo
-> Coming soon after deployment
+https://frontend-production-703c.up.railway.app
+
+## Backend API
+https://cricket-analyst-production.up.railway.app
 
 ## Screenshots
 > Add screenshots here after taking them
@@ -156,9 +159,3 @@ cricket-analyst/
 │       └── ci.yml
 ├── docker-compose.yml
 └── docker-compose.prod.yml
-
-## Live Demo
-https://frontend-production-703c.up.railway.app
-
-## Backend API
-https://cricket-analyst-production.up.railway.app
