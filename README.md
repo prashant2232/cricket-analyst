@@ -10,7 +10,11 @@ https://frontend-production-703c.up.railway.app
 https://cricket-analyst-production.up.railway.app
 
 ## Screenshots
-> Add screenshots here after taking them
+![alt text](image.png)
+![alt text](image-3.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+
 
 ## Tech Stack
 
