@@ -156,3 +156,9 @@ cricket-analyst/
 │       └── ci.yml
 ├── docker-compose.yml
 └── docker-compose.prod.yml
+
+## Live Demo
+https://frontend-production-703c.up.railway.app
+
+## Backend API
+https://cricket-analyst-production.up.railway.app
