@@ -20,7 +20,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: frontend/Dockerfile.prod
+      dockerfile: frontend/Dockerfile.frontend
     container_name: cricket-frontend-prod
     ports:
       - "80:80"
