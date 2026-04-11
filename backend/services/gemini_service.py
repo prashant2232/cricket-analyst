@@ -14,7 +14,7 @@ from prompts.analyst_prompts import (
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-pro:generateContent"
+    "gemini-1.5-flash:generateContent"
 )
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
@@ -182,7 +182,6 @@ async def generate_compare_report(player1: dict, player2: dict) -> dict:
         f"{player1['name'].lower().replace(' ', '_')}_vs_"
         f"{player2['name'].lower().replace(' ', '_')}_compare.json"
     )
-    asyncio.create_task(upload_to_blob(blob_name, result))
 
     return result
 

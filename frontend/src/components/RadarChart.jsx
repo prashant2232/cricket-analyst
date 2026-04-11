@@ -1,10 +1,10 @@
 import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis,
-  PolarRadiusAxis, Legend, ResponsiveContainer
+  PolarRadiusAxis, Legend, ResponsiveContainer,
 } from "recharts";
+import { T } from "../theme";
 
 export default function PlayerRadarChart({ player1, player2 }) {
-  // Normalize a value to 0-100 scale
   const norm = (val, min, max) =>
     Math.round(((val - min) / (max - min)) * 100);
 
@@ -41,32 +41,74 @@ export default function PlayerRadarChart({ player1, player2 }) {
     },
   ];
 
+  const CustomLegend = () => (
+    <div style={{
+      display: "flex", justifyContent: "center",
+      gap: 20, marginTop: 8,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <div style={{
+          width: 12, height: 12, borderRadius: 2,
+          background: T.gold, opacity: 0.8,
+        }} />
+        <span style={{
+          fontSize: 12, color: T.textSecondary,
+          fontFamily: T.fontSans,
+        }}>
+          {player1.name}
+        </span>
+      </div>
+      {player2 && (
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <div style={{
+            width: 12, height: 12, borderRadius: 2,
+            background: T.info, opacity: 0.8,
+          }} />
+          <span style={{
+            fontSize: 12, color: T.textSecondary,
+            fontFamily: T.fontSans,
+          }}>
+            {player2.name}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+
   return (
-    <div style={{ width: "100%", height: 300 }}>
+    <div style={{ width: "100%", height: 320 }}>
       <ResponsiveContainer>
         <RadarChart data={data}>
-          <PolarGrid stroke="#333" />
-          <PolarAngleAxis dataKey="stat" tick={{ fill: "#888", fontSize: 12 }} />
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#555", fontSize: 10 }} />
+          <PolarGrid stroke={T.border} />
+          <PolarAngleAxis
+            dataKey="stat"
+            tick={{ fill: T.textSecondary, fontSize: 12, fontFamily: T.fontSans }}
+          />
+          <PolarRadiusAxis
+            angle={30}
+            domain={[0, 100]}
+            tick={{ fill: T.textMuted, fontSize: 10 }}
+            axisLine={false}
+          />
           <Radar
             name={player1.name}
             dataKey="p1"
-            stroke="#00ff88"
-            fill="#00ff88"
-            fillOpacity={0.2}
+            stroke={T.gold}
+            fill={T.gold}
+            fillOpacity={0.15}
+            strokeWidth={2}
           />
           {player2 && (
             <Radar
               name={player2.name}
               dataKey="p2"
-              stroke="#00aaff"
-              fill="#00aaff"
-              fillOpacity={0.2}
+              stroke={T.info}
+              fill={T.info}
+              fillOpacity={0.15}
+              strokeWidth={2}
             />
           )}
-          <Legend
-            wrapperStyle={{ color: "#888", fontSize: 13 }}
-          />
+          <Legend content={<CustomLegend />} />
         </RadarChart>
       </ResponsiveContainer>
     </div>

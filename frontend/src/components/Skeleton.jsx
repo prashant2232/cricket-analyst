@@ -1,8 +1,10 @@
+import { T } from "../theme";
+
 const shimmer = `
   @keyframes shimmer {
-    0%   { opacity: 0.4; }
-    50%  { opacity: 0.8; }
-    100% { opacity: 0.4; }
+    0%   { opacity: 0.3; }
+    50%  { opacity: 0.6; }
+    100% { opacity: 0.3; }
   }
 `;
 
@@ -11,10 +13,8 @@ export default function Skeleton({ width = "100%", height = 16, borderRadius = 6
     <>
       <style>{shimmer}</style>
       <div style={{
-        width,
-        height,
-        borderRadius,
-        background: "#1a1a1a",
+        width, height, borderRadius,
+        background: T.navy,
         animation: "shimmer 1.4s ease-in-out infinite",
       }} />
     </>
@@ -24,18 +24,15 @@ export default function Skeleton({ width = "100%", height = 16, borderRadius = 6
 export function PlayerCardSkeleton() {
   return (
     <div style={{
-      background: "#1a1a1a",
-      border: "1px solid #222",
-      borderRadius: 12,
-      padding: 20,
+      background: T.bgCard, border: `1px solid ${T.border}`,
+      borderTop: `2px solid ${T.gold}`,
+      borderRadius: 12, padding: 20,
     }}>
       <style>{shimmer}</style>
-
-      {/* Header */}
       <div style={{ display: "flex", gap: 14, marginBottom: 20 }}>
         <div style={{
           width: 52, height: 52, borderRadius: "50%",
-          background: "#222",
+          background: T.navy,
           animation: "shimmer 1.4s ease-in-out infinite",
           flexShrink: 0,
         }} />
@@ -45,13 +42,12 @@ export function PlayerCardSkeleton() {
           <Skeleton width="40%" height={12} />
         </div>
       </div>
-
-      {/* Stat grid */}
       <div style={{ display: "grid",
         gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 16 }}>
         {[...Array(6)].map((_, i) => (
           <div key={i} style={{
-            background: "#111", borderRadius: 8, padding: "10px 12px",
+            background: T.bgStat, borderRadius: 8,
+            padding: "10px 12px", border: `1px solid ${T.border}`,
           }}>
             <Skeleton height={20} borderRadius={4} />
             <div style={{ marginTop: 6 }}>
@@ -60,8 +56,6 @@ export function PlayerCardSkeleton() {
           </div>
         ))}
       </div>
-
-      {/* Bars */}
       <Skeleton height={8} borderRadius={4} />
       <div style={{ marginTop: 8 }}>
         <Skeleton height={8} borderRadius={4} />

@@ -28,25 +28,39 @@ Rules:
 
 def compare_players_prompt(player1: dict, player2: dict) -> str:
     """Build prompt for head-to-head comparison."""
+
+    def safe_player(p: dict) -> dict:
+        return {
+            "name": p.get("name", "Unknown"),
+            "country": p.get("country", "Unknown"),
+            "role": p.get("role", "Unknown"),
+            "career_stats": p.get("career_stats", {}),
+            "bowling_stats": p.get("bowling_stats") or {},
+            "vs_pace": p.get("vs_pace", 0),
+            "vs_spin": p.get("vs_spin", 0),
+            "icc_ranking": p.get("icc_ranking", 0),
+            "recent_series": p.get("recent_series", []),
+        }
+
     return f"""
 You are an expert cricket analyst. Compare these two players and return JSON only.
 
 Player 1:
-{json.dumps(player1, indent=2)}
+{json.dumps(safe_player(player1), indent=2)}
 
 Player 2:
-{json.dumps(player2, indent=2)}
+{json.dumps(safe_player(player2), indent=2)}
 
 Return this exact JSON structure:
 {{
   "player1_edge": "2-3 sentences on where {player1['name']} has the clear advantage",
   "player2_edge": "2-3 sentences on where {player2['name']} has the clear advantage",
-  "combined_analysis": "3-4 sentences comparing both players overall, with a final verdict on who is better and in which format"
+  "combined_analysis": "3-4 sentences comparing both players overall with a final verdict"
 }}
 
 Rules:
 - Reference specific stats when making claims
-- Be balanced but decisive — pick a winner in the combined_analysis
+- Be balanced but decisive
 - Return valid JSON only, no other text
 """
 
